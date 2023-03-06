@@ -5,7 +5,7 @@ services:
     container_name: crud-backend
     build:
       context: backend
-      dockerfile: dockerfile
+      dockerfile: backend/Dockerfile
     restart: always
     ports:
       - '8080:80'
