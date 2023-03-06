@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  crud-backend:
+    container_name: crud-backend
+    build:
+      context: backend
+      dockerfile: dockerfile
+    restart: always
+    ports:
+      - '8080:80'
+    volumes:
+      - ./:/var/www/crud-backend
+
+  crud-database:
+    image: postgres:latest
+    container_name: crud-database
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      TZ: Europe/Warsaw
+    restart: always
+    ports:
+      - '5432:5432'
+    volumes:
+      - database:/var/lib/postgresql/data
+    tty: true
+
+volumes:
+  database:
