@@ -7,6 +7,7 @@
 **/._*
 **/.dockerignore
 **/.DS_Store
+**/.idea
 **/.git/
 **/.gitattributes
 **/.gitignore
@@ -15,7 +16,6 @@
 **/docker-compose.*.yml
 **/docker-compose.yaml
 **/docker-compose.yml
-**/Dockerfile
 **/Thumbs.db
 
 # backend ignore
