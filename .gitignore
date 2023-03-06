@@ -18,6 +18,7 @@
 **/Dockerfile
 **/Thumbs.db
 
+# backend ignore
 backend/.github/
 backend/docs/
 backend/public/bundles/
