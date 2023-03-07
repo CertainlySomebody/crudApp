@@ -5,12 +5,16 @@ services:
     container_name: crud-backend
     build:
       context: backend
-      dockerfile: backend/Dockerfile
-    restart: always
+      dockerfile: Dockerfile
+    restart: unless-stopped
     ports:
-      - '8080:80'
+      - '9000:9000'
+    networks:
+      - crud-network
     volumes:
       - ./:/var/www/crud-backend
+    environment:
+      VIRTUAL_HOST: backend.localhost
 
   crud-database:
     image: postgres:latest
@@ -19,13 +23,47 @@ services:
       POSTGRES_DB: ${DATABASE_NAME}
       POSTGRES_USER: ${DATABASE_USER}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-      TZ: Europe/Warsaw
-    restart: always
+    restart: unless-stopped
     ports:
       - '5432:5432'
+    networks:
+      - crud-network
     volumes:
       - database:/var/lib/postgresql/data
     tty: true
 
+  crud-nginx:
+    container_name: crud-nginx
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    ports:
+      - '8080:8080'
+      - '8081:8081'
+    networks:
+      - crud-network
+    restart: unless-stopped
+    volumes:
+      - ./:/var/www/crud-backend
+    depends_on:
+      - crud-backend
+      - crud-database
+
+  crud-frontend:
+    container_name: crud-frontend
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    environment:
+      VIRTUAL_HOST: frontend.localhost
+    ports:
+      - '1010:1010'
+
+
+
+
 volumes:
   database:
+
+networks:
+  crud-network:
