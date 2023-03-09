@@ -1,0 +1,20 @@
+
+/* Global css styles */
+
+* {
+    background-color: #222222;
+    color: white;
+}
+
+footer {
+    position:sticky;
+    bottom:0;
+}
+
+.formkit-inner {
+    background-color: #ffffff;
+}
+
+.tech-logo {
+    max-width: 12rem;
+}

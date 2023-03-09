@@ -14,15 +14,16 @@ services:
     volumes:
       - ./:/var/www/crud-backend
     environment:
-      VIRTUAL_HOST: backend.localhost
+      # cs fixer not working on 8.2 yet
+      PHP_CS_FIXER_IGNORE_ENV: 1
 
   crud-database:
     image: postgres:latest
     container_name: crud-database
     environment:
-      POSTGRES_DB: ${DATABASE_NAME}
-      POSTGRES_USER: ${DATABASE_USER}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: 'crud'
+      POSTGRES_USER: 'user'
+      POSTGRES_PASSWORD: 'zadanieTestoweRankomat'
     restart: unless-stopped
     ports:
       - '5432:5432'
@@ -39,7 +40,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - '8080:8080'
-      - '8081:8081'
     networks:
       - crud-network
     restart: unless-stopped
@@ -54,10 +54,12 @@ services:
     build:
       context: frontend
       dockerfile: Dockerfile
-    environment:
-      VIRTUAL_HOST: frontend.localhost
     ports:
-      - '1010:1010'
+      - '3000:3000'
+    command: npm run start
+    networks:
+      - crud-network
+
 
 
 

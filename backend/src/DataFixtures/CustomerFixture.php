@@ -11,7 +11,7 @@ class CustomerFixture extends Fixture
 {
     private const dummyCount = 30;
 
-    public function load (ObjectManager $manager): void
+    public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
 

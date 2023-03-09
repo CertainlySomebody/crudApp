@@ -1,17 +1,12 @@
 FROM node:lts-alpine
 
-RUN npm install -g http-server
-
 WORKDIR /var/www/crud-frontend/frontend
 
-COPY package.json ./
-
+COPY package*.json ./
 RUN npm install
 
-COPY .. .
+COPY . .
 
-RUN npm run build
+EXPOSE 3000
 
-EXPOSE 1010
-
-CMD [ "http-server", "dist" ]
+RUN npm run generate

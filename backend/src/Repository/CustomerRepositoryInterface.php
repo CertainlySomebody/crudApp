@@ -8,12 +8,6 @@ use App\Entity\Customer;
 
 interface CustomerRepositoryInterface
 {
-    public function saveCustomer(array $customer): void;
-
-    public function deleteCustomer(Customer $customer): void;
-
-    public function editCustomer(Customer $customer): Customer;
-
     public function getAllCustomers(): array;
 
     public function getTotalCustomers(): int;
