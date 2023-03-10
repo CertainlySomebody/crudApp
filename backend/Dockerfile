@@ -11,9 +11,7 @@ RUN apt update \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN curl -sS https://get.symfony.com/cli/installer | bash
-
-RUN composer install
+RUN curl -sS https://get.symfony.com/cli/installer | bash/co
 
 RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 

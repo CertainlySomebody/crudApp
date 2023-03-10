@@ -9,6 +9,7 @@ How to run on localhost
        docker-compose up -d --build
        docker exec -ti crud-backend bash
        # inside backend container
+       composer install
        php bin/console doctrine:migrations:migrate
        php bin/console doctrine:fixtures:load
 
